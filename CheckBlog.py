@@ -5,8 +5,9 @@ import hashlib
 rssUrl = "https://angloco.exblog.jp/index.xml"
 discordUrl = os.environ["DISCORD_WBHOOK_URL"]
 digestFile = "blogHash.txt"
+requestHeaders = {"User-Agent": "Mozilla/5.0"}
 
-r = requests.get(rssUrl, timeout=10)
+r = requests.get(rssUrl, headers=requestHeaders, timeout=10)
 r.raise_for_status()
 digest = hashlib.sha256(r.content).hexdigest()
 
